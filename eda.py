@@ -31,3 +31,48 @@ df['SibSp'].value_counts().plot.bar(ax=ax[0],color='red',edgecolor="black")
 ax[0].set_title("sibsp count")
 sns.countplot(x='SibSp',data=df,ax=ax[1],hue='Survived')
 ax[1].set_title("sibsp vs survived")
+
+#DISTIBUTION FOR AGE AND  FAER
+sns.distplot(df['Age'],color='red')
+sns.distplot(df["Age"],color='black')
+
+
+#SURVIVED VS CLASS
+
+f,ax=plt.subplots(1,2,figsize=(10,8))
+df["Pclass"].value_counts().plot.bar(ax=ax[0],color='red')
+ax[0].set_title("passenger class")
+sns.countplot(x="Pclass",data=df,hue='Survived')
+ax[1].set_title("survived vs passenger class")
+plt.show()
+
+#Embarked vs survived
+f,ax=plt.subplots(1,2,figsize=(10,8))
+df["Embarked"].value_counts().plot.bar(ax=ax[0],color="skyblue")
+ax[0].set_title('embarked')
+sns.countplot(x="Embarked",data=df,ax=ax[1])
+ax[1].set_title("Embarked vs survived")
+
+
+#SURVIVED VS AGE VS NOT SURVIVED
+f,ax=plt.subplots(1,2,figsize=(10,8))
+df[df['Survived']==0]['Age'].plot.hist(bins=20,color='red',edgecolor="black",ax=ax[0])
+a=list(range(5,85,5))
+ax[0].set_xticks(a)
+ax[0].set_title('survived vs age')
+df[df['Survived']==1]['Age'].plot.hist(bins=20,ax=ax[1],edgecolor='black')
+ax[1].set_xticks(a)
+ax[1].set_title("not survived va age")
+plt.show()
+
+
+#grouby
+
+df.groupby(['Sex','Survived'])['Survived'].count()
+
+
+#CORRELATION
+sns.heatmap(data.corr(),annot=True,cmap='RdYlGn',linewidths=0.2) #data.corr()-->correlation matrix
+fig=plt.gcf()
+fig.set_size_inches(10,8)
+plt.show()
