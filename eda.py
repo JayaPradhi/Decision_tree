@@ -18,5 +18,16 @@ sns.countplot(x="Survived",data=df,ax=ax[1])
 ax[1].set_title("Count plot")
 plt.show()
 
+#MALE VS FEMALE
+f,ax=plt.subplots(1,2,figsize=(10,8))
+df["Sex"].value_counts().plot.bar(ax=ax[0],title="gender count")
+sns.countplot(x='Sex',hue='Survived',ax=ax[1],data=df)
+ax[1].set_title('Male vs female')
+plt.show()
 
-
+#SIBSP VS SURVIVED
+f,ax=plt.subplots(1,2,figsize=(10,8))
+df['SibSp'].value_counts().plot.bar(ax=ax[0],color='red',edgecolor="black")
+ax[0].set_title("sibsp count")
+sns.countplot(x='SibSp',data=df,ax=ax[1],hue='Survived')
+ax[1].set_title("sibsp vs survived")
