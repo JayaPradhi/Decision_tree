@@ -76,3 +76,11 @@ sns.heatmap(data.corr(),annot=True,cmap='RdYlGn',linewidths=0.2) #data.corr()-->
 fig=plt.gcf()
 fig.set_size_inches(10,8)
 plt.show()
+
+
+#EMBARKED
+f,ax=plt.subplots(2,2,figsize=(10,8))
+df['Embarked'].value_counts().plot.bar(color="red",ax=ax[0,0])
+sns.countplot(x='Embarked',data=df,hue="Sex",ax=ax[0,1])
+sns.countplot(x='Embarked',data=df,hue='Pclass',ax=ax[1,0])
+sns.countplot(x='Embarked',data=df,hue='Survived')
